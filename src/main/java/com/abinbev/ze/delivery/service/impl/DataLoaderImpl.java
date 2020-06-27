@@ -34,7 +34,6 @@ public class DataLoaderImpl implements DataLoader {
 
     @Override
     public void load() {
-        TypeReference<Json> typeReference = new TypeReference<Json>() {};
         InputStream inputStream = TypeReference.class.getResourceAsStream("/pdvs.json");
         try {
             Json json = jsonMapper.readValue(inputStream, Json.class);
