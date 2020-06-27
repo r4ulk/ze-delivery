@@ -7,5 +7,5 @@ import lombok.Setter;
 @Setter
 public class Address {
     private String type;
-    private Float[][][] coordinates;
+    private Float[] coordinates;
 }

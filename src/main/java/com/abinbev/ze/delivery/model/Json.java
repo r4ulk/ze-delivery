@@ -3,9 +3,10 @@ package com.abinbev.ze.delivery.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
-public class CoverageArea {
-    private String type;
-    private Float[][][][] coordinates;
+public class Json {
+    private List<Store> pdvs;
 }
