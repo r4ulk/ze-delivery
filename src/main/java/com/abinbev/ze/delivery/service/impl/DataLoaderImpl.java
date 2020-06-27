@@ -1,5 +1,6 @@
 package com.abinbev.ze.delivery.service.impl;
 
+import com.abinbev.ze.delivery.exception.DataLoaderException;
 import com.abinbev.ze.delivery.response.data.Json;
 import com.abinbev.ze.delivery.model.Store;
 import com.abinbev.ze.delivery.service.DataLoader;
@@ -33,15 +34,15 @@ public class DataLoaderImpl implements DataLoader {
     }
 
     @Override
-    public void load() {
+    public void load() throws DataLoaderException {
         InputStream inputStream = TypeReference.class.getResourceAsStream("/pdvs.json");
         try {
             Json json = jsonMapper.readValue(inputStream, Json.class);
             this.stores = json.getPdvs();
-            logger.info("Stores data loaded... stores size: {}", this.stores.size());
+            logger.info("Stores data loaded from json... stores size: {}", this.stores.size());
         } catch (IOException e) {
-            System.out.println(e);
             logger.error("Couldnt read stores from json'. Message: ", e.getMessage());
+            throw new DataLoaderException(e.getMessage());
         }
     }
 

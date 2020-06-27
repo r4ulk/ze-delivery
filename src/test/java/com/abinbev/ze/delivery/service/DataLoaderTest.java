@@ -17,10 +17,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class DataLoaderTest {
 
     @Autowired
-    DataLoader dataLoader;
+    private DataLoader dataLoader;
 
     @Test
-    public void shouldGetLoadedStores() throws Exception {
+    public void shouldGetLoadedStores() {
         List<Store> stores = dataLoader.get();
         assertThat(stores).isNotNull();
         assertThat(stores.size()).isEqualTo(51);
