@@ -1,6 +1,6 @@
 package com.abinbev.ze.delivery.service.impl;
 
-import com.abinbev.ze.delivery.model.Json;
+import com.abinbev.ze.delivery.response.data.Json;
 import com.abinbev.ze.delivery.model.Store;
 import com.abinbev.ze.delivery.service.DataLoader;
 import com.fasterxml.jackson.core.type.TypeReference;

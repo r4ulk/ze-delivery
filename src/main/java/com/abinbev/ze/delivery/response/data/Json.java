@@ -1,5 +1,6 @@
-package com.abinbev.ze.delivery.model;
+package com.abinbev.ze.delivery.response.data;
 
+import com.abinbev.ze.delivery.model.Store;
 import lombok.Getter;
 import lombok.Setter;
 
