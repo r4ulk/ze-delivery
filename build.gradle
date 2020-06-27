@@ -19,6 +19,7 @@ repositories {
 }
 
 dependencies {
+	compile 'com.fasterxml.jackson.core:jackson-databind:2.11.1'
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
@@ -28,6 +29,7 @@ dependencies {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 	testImplementation 'org.springframework.security:spring-security-test'
+	testCompile 'junit:junit:4.13'
 }
 
 test {
