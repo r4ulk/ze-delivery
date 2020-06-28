@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -18,12 +19,21 @@ public class StoreRepositoryTest {
     @Autowired
     private StoreRepository repository;
 
+    private final String STORE_TRADING_NAME = "Adega Osasco";
+
     @Test
-    public void shouldGetAllStoresFromRepository() {
+    public void shouldGetAllStores() {
         List<Store> stores = repository.findAll();
         assertThat(stores).isNotNull();
         assertThat(stores.size()).isEqualTo(51);
-        assertThat(stores.get(0).getTradingName()).isEqualTo("Adega Osasco");
+        assertThat(stores.get(0).getTradingName()).isEqualTo(STORE_TRADING_NAME);
+    }
+
+    @Test
+    public void shouldGetStoreById() {
+        Optional<Store> store = repository.findById(1L);
+        assertThat(store.get()).isNotNull();
+        assertThat(store.get().getTradingName()).isEqualTo(STORE_TRADING_NAME);
     }
 
 }

@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface StoreRepository extends MongoRepository<Store, String> {
+public interface StoreRepository extends MongoRepository<Store, Long> {
 
     @Query("{'_id': ?0}")
     Store get(long storeId);
