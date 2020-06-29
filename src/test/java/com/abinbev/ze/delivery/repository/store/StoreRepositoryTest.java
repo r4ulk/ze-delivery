@@ -1,19 +1,15 @@
 package com.abinbev.ze.delivery.repository.store;
 
 import com.abinbev.ze.delivery.model.Store;
+import com.abinbev.ze.delivery.utils.GeoJsonTypeEnum;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Metrics;
-import org.springframework.data.geo.Point;
-import org.springframework.data.mongodb.core.geo.GeoJsonMultiPolygon;
-import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
-import org.springframework.data.mongodb.core.geo.GeoJsonPolygon;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,7 +43,7 @@ public class StoreRepositoryTest {
     public void shouldGetAllNearStoresByLocation() {
         Distance distance = new Distance(0.1, Metrics.KILOMETERS); // 100 meters
 
-        List<Store> stores = repository.findByLocationNear("MultiPolygon", -43.297337,-23.013538, distance.getValue());
+        List<Store> stores = repository.findByLocationNear(GeoJsonTypeEnum.MULTIPOLYGON.getValue(), -43.297337,-23.013538, distance.getValue());
 
         assertThat(stores).isNotNull();
         assertThat(stores.size()).isEqualTo(1);

@@ -6,8 +6,8 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum GeoJsonTypeEnum {
-    POINT("POINT"),
-    MULTIPOLYGON("MULTIPOLYGON");
+    POINT("Point"),
+    MULTIPOLYGON("Multipolygon");
 
     private String value = null;
 }
