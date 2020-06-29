@@ -7,9 +7,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.geo.GeoJsonMultiPolygon;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * The Store model is a concrete representation of pdv
@@ -18,10 +20,16 @@ import org.springframework.data.mongodb.core.index.Indexed;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Document
 public class Store {
+
+    @Id
     private long id;
+
     private String tradingName;
     private String ownerName;
+
+    @Indexed(unique = true)
     private String document;
 
     @Indexed
