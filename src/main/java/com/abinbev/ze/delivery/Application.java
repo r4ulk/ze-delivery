@@ -18,9 +18,9 @@ public class Application {
 	@Autowired
 	public void starter(DataLoader dataLoader, DataStore dataStore)
 			throws DataLoaderException, DataStoreException {
-		//dataLoader.load();
-		//dataStore.clear();
-		//dataStore.store();
+		dataLoader.load();
+		dataStore.clear();
+		dataStore.store();
 	}
 
 }

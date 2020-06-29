@@ -32,7 +32,7 @@ public class StoreRepositoryTest {
     public void shouldGetAllStores() {
         List<Store> stores = repository.findAll();
         assertThat(stores).isNotNull();
-        assertThat(stores.size()).isEqualTo(51);
+        assertThat(stores.size()).isEqualTo(48);
         assertThat(stores.get(0).getTradingName()).isEqualTo(STORE_TRADING_NAME);
     }
 
@@ -45,14 +45,9 @@ public class StoreRepositoryTest {
 
     @Test
     public void shouldGetAllNearStoresByLocation() {
-        List<Point> points = new ArrayList<>();
-        points.add(new Point(43.297337,-23.013538));
-        List<GeoJsonPolygon> polygons = new ArrayList<>();
-        polygons.add(new GeoJsonPolygon(points));
-        GeoJsonMultiPolygon geoJsonMultiPolygon = new GeoJsonMultiPolygon(polygons);
-
         Distance distance = new Distance(0.1, Metrics.KILOMETERS); // 100 meters
-        List<Store> stores = repository.findByLocationNear(geoJsonMultiPolygon.getType(), point.getX(), point.getY(), distance.getValue());
+
+        List<Store> stores = repository.findByLocationNear("MultiPolygon", -43.297337,-23.013538, distance.getValue());
 
         assertThat(stores).isNotNull();
         assertThat(stores.size()).isEqualTo(1);
