@@ -5,7 +5,7 @@ import com.abinbev.ze.delivery.model.Store;
 
 import java.util.List;
 
-public interface DataLoader {
+public interface DataLoaderService {
     void load() throws DataLoaderException;
     List<Store> get();
 }

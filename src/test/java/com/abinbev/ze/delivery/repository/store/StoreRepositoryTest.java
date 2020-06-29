@@ -25,7 +25,7 @@ public class StoreRepositoryTest {
     private final String STORE_TRADING_NAME = "Adega Osasco";
 
     @Test
-    public void shouldGetAllStores() {
+    public void getAllStoresFromDB_whenSuccess_thenReturnStoreList() {
         List<Store> stores = repository.findAll();
         assertThat(stores).isNotNull();
         assertThat(stores.size()).isEqualTo(48);
@@ -33,14 +33,14 @@ public class StoreRepositoryTest {
     }
 
     @Test
-    public void shouldGetStoreById() {
+    public void getStoreById_whenValidStoreId_thenReturnValidStore() {
         Optional<Store> store = repository.findById(1L);
         assertThat(store.get()).isNotNull();
         assertThat(store.get().getTradingName()).isEqualTo(STORE_TRADING_NAME);
     }
 
     @Test
-    public void shouldGetAllNearStoresByLocation() {
+    public void getAllNearStoresByLocation_whenSuccess_thenReturnStoreList() {
         Distance distance = new Distance(0.1, Metrics.KILOMETERS); // 100 meters
 
         List<Store> stores = repository.findByLocationNear(GeoJsonTypeEnum.MULTIPOLYGON.getValue(), -43.297337,-23.013538, distance.getValue());

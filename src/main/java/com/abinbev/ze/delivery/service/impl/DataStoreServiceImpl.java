@@ -3,8 +3,8 @@ package com.abinbev.ze.delivery.service.impl;
 import com.abinbev.ze.delivery.exception.DataStoreException;
 import com.abinbev.ze.delivery.model.Store;
 import com.abinbev.ze.delivery.repository.store.StoreRepository;
-import com.abinbev.ze.delivery.service.DataLoader;
-import com.abinbev.ze.delivery.service.DataStore;
+import com.abinbev.ze.delivery.service.DataLoaderService;
+import com.abinbev.ze.delivery.service.DataStoreService;
 import com.mongodb.MongoException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,18 +19,18 @@ import java.util.stream.Collectors;
  * @implNote service used to store data and clear data from mongodb repository
  */
 @Service
-public class DataStoreImpl implements DataStore {
+public class DataStoreServiceImpl implements DataStoreService {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private StoreRepository repository;
+    private final StoreRepository repository;
 
-    private DataLoader dataLoader;
+    private DataLoaderService dataLoaderService;
 
     @Autowired
-    public DataStoreImpl(StoreRepository repository, DataLoader dataLoader) {
+    public DataStoreServiceImpl(StoreRepository repository, DataLoaderService dataLoaderService) {
         this.repository = repository;
-        this.dataLoader = dataLoader;
+        this.dataLoaderService = dataLoaderService;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class DataStoreImpl implements DataStore {
 
     @Override
     public List<Store> store()  {
-        return dataLoader.get().stream()
+        return dataLoaderService.get().stream()
                 .filter(s -> {
                     try {
                         repository.save(s);

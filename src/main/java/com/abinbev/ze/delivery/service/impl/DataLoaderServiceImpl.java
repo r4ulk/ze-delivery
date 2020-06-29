@@ -3,7 +3,7 @@ package com.abinbev.ze.delivery.service.impl;
 import com.abinbev.ze.delivery.exception.DataLoaderException;
 import com.abinbev.ze.delivery.response.data.Json;
 import com.abinbev.ze.delivery.model.Store;
-import com.abinbev.ze.delivery.service.DataLoader;
+import com.abinbev.ze.delivery.service.DataLoaderService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -20,7 +20,7 @@ import java.util.List;
  * @implNote used to load pdvs (store) from the given json located at resources path: pdvs.json
  */
 @Service
-public class DataLoaderImpl implements DataLoader {
+public class DataLoaderServiceImpl implements DataLoaderService {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -29,7 +29,7 @@ public class DataLoaderImpl implements DataLoader {
     private final ObjectMapper jsonMapper;
 
     @Autowired
-    public DataLoaderImpl(ObjectMapper jsonMapper) {
+    public DataLoaderServiceImpl(ObjectMapper jsonMapper) {
         this.jsonMapper = jsonMapper;
     }
 

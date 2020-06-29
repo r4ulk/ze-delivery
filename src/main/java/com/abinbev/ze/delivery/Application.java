@@ -2,8 +2,8 @@ package com.abinbev.ze.delivery;
 
 import com.abinbev.ze.delivery.exception.DataLoaderException;
 import com.abinbev.ze.delivery.exception.DataStoreException;
-import com.abinbev.ze.delivery.service.DataLoader;
-import com.abinbev.ze.delivery.service.DataStore;
+import com.abinbev.ze.delivery.service.DataLoaderService;
+import com.abinbev.ze.delivery.service.DataStoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,11 +16,11 @@ public class Application {
 	}
 
 	@Autowired
-	public void starter(DataLoader dataLoader, DataStore dataStore)
+	public void starter(DataLoaderService dataLoaderService, DataStoreService dataStoreService)
 			throws DataLoaderException, DataStoreException {
-		dataLoader.load();
-		dataStore.clear();
-		dataStore.store();
+		dataLoaderService.load();
+		dataStoreService.clear();
+		dataStoreService.store();
 	}
 
 }

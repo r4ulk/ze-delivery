@@ -5,7 +5,7 @@ import com.abinbev.ze.delivery.model.Store;
 
 import java.util.List;
 
-public interface DataStore {
+public interface DataStoreService {
     void clear() throws DataStoreException;
     List<Store> store() throws DataStoreException;
 }

@@ -14,14 +14,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class DataLoaderTest {
+public class DataLoaderServiceTest {
 
     @Autowired
-    private DataLoader dataLoader;
+    private DataLoaderService dataLoaderService;
 
     @Test
-    public void shouldGetLoadedStores() {
-        List<Store> stores = dataLoader.get();
+    public void getAllStoresFromJSON_whenSuccess_thenReturnStoreList() {
+        List<Store> stores = dataLoaderService.get();
         assertThat(stores).isNotNull();
         assertThat(stores.size()).isEqualTo(51);
         assertThat(stores.get(0).getTradingName()).isEqualTo("Adega Osasco");
