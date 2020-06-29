@@ -17,7 +17,7 @@ import java.util.List;
 @Service
 public class DataStoreImpl implements DataStore {
 
-    private final StoreRepository repository;
+    private StoreRepository repository;
 
     private DataLoader dataLoader;
 
