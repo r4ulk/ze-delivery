@@ -22,8 +22,8 @@ public class StoreController {
 
     /**
      * Create Store
-     * @param Store - The store (pdv) data
-     * @return Store - Ther Store created
+     * @param store - The store (pdv) data
+     * @return Store - The Store created
      */
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)

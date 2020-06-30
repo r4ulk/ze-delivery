@@ -1,11 +1,13 @@
 package com.abinbev.ze.delivery.service.impl;
 
 import com.abinbev.ze.delivery.exception.StoreCreationException;
+import com.abinbev.ze.delivery.exception.StoreDuplicatedException;
 import com.abinbev.ze.delivery.exception.StoreNotFoundException;
 import com.abinbev.ze.delivery.model.Store;
 import com.abinbev.ze.delivery.repository.store.StoreRepository;
 import com.abinbev.ze.delivery.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.awt.*;
@@ -24,8 +26,12 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public Store create(Store s) {
-        return Optional.of(repository.save(s))
-                .orElseThrow(() -> new StoreCreationException());
+        try {
+            return Optional.of(repository.insert(s))
+                    .orElseThrow(() -> new StoreCreationException());
+        }catch (DuplicateKeyException ex) {
+            throw new StoreDuplicatedException();
+        }
     }
 
     @Override

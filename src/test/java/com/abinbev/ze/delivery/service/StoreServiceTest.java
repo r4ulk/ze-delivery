@@ -1,5 +1,6 @@
 package com.abinbev.ze.delivery.service;
 
+import com.abinbev.ze.delivery.exception.StoreDuplicatedException;
 import com.abinbev.ze.delivery.exception.StoreNotFoundException;
 import com.abinbev.ze.delivery.model.Store;
 import org.junit.BeforeClass;
@@ -47,7 +48,7 @@ public class StoreServiceTest {
 
     @Test
     public void createStore_whenSuccess_thenReturnStoreCreated() {
-        Store store = dataLoaderService.get().get(1); // gets the first Store loaded from json
+        Store store = dataLoaderService.get().get(0); // gets the first Store loaded from json
         assertThat(store).isNotNull();
 
         // change unique values
@@ -58,6 +59,17 @@ public class StoreServiceTest {
         assertThat(created).isNotNull();
         assertThat(store.getId()).isEqualTo(STORE_VALID_NEW_ID);
         assertThat(store.getDocument()).isEqualTo(STORE_VALID_NEW_DOCUMENT);
+    }
+
+    @Test
+    public void createStore_whenDuplicatedCNPJ_thenReturnStoreDuplicatedException() {
+        Store store = dataLoaderService.get().get(0); // gets the first Store loaded from json
+        assertThat(store).isNotNull();
+
+        store.setId(666);
+
+        assertThrows(StoreDuplicatedException.class, () -> service.create(store));
+
     }
 
 }
