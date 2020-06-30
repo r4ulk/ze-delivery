@@ -1,8 +1,11 @@
 package com.abinbev.ze.delivery.model;
 
 import com.abinbev.ze.delivery.response.data.GeoJsonMultiPolygonDeserializer;
+import com.abinbev.ze.delivery.response.data.GeoJsonMultiPolygonSerializer;
 import com.abinbev.ze.delivery.response.data.GeoJsonPointDeserializer;
+import com.abinbev.ze.delivery.response.data.GeoJsonPointSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,9 +36,11 @@ public class Store {
     private String document;
 
     @Indexed
+    @JsonSerialize(using = GeoJsonMultiPolygonSerializer.class)
     @JsonDeserialize(using = GeoJsonMultiPolygonDeserializer.class)
     private GeoJsonMultiPolygon coverageArea;
 
+    @JsonSerialize(using = GeoJsonPointSerializer.class)
     @JsonDeserialize(using = GeoJsonPointDeserializer.class)
     private GeoJsonPoint address;
 }

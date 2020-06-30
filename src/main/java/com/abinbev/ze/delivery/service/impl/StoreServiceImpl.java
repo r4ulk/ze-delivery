@@ -30,7 +30,9 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public Store getById(Long id) {
-        return repository.findById(id).orElseThrow(() -> new StoreNotFoundException());
+        Store store = repository.findById(id)
+                .orElseThrow(() -> new StoreNotFoundException());
+        return store;
     }
 
     @Override

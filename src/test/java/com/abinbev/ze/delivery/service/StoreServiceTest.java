@@ -2,11 +2,9 @@ package com.abinbev.ze.delivery.service;
 
 import com.abinbev.ze.delivery.exception.StoreNotFoundException;
 import com.abinbev.ze.delivery.model.Store;
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -14,7 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@RunWith(Suite.class)
+@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class StoreServiceTest {
 
@@ -32,11 +30,6 @@ public class StoreServiceTest {
 
     @BeforeClass
     void setup() {
-        service.deleteById(STORE_VALID_NEW_ID);
-    }
-
-    @AfterClass
-    void onEnd() {
         service.deleteById(STORE_VALID_NEW_ID);
     }
 
