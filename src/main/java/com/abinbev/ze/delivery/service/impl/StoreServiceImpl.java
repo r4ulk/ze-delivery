@@ -1,5 +1,6 @@
 package com.abinbev.ze.delivery.service.impl;
 
+import com.abinbev.ze.delivery.exception.StoreCreationException;
 import com.abinbev.ze.delivery.exception.StoreNotFoundException;
 import com.abinbev.ze.delivery.model.Store;
 import com.abinbev.ze.delivery.repository.store.StoreRepository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.awt.*;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StoreServiceImpl implements StoreService {
@@ -21,8 +23,9 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public Store create(Store store) {
-        return null;
+    public Store create(Store s) {
+        return Optional.of(repository.save(s))
+                .orElseThrow(() -> new StoreCreationException());
     }
 
     @Override
@@ -33,5 +36,10 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public List<StoreService> searchNear(Point point) {
         return null;
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        repository.deleteById(id);
     }
 }

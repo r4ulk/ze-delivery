@@ -2,26 +2,43 @@ package com.abinbev.ze.delivery.service;
 
 import com.abinbev.ze.delivery.exception.StoreNotFoundException;
 import com.abinbev.ze.delivery.model.Store;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.web.reactive.function.client.WebClientResponseException;
-
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@RunWith(SpringRunner.class)
+@RunWith(Suite.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class StoreServiceTest {
 
     @Autowired
     private StoreService service;
 
+    @Autowired
+    private DataLoaderService dataLoaderService;
+
     private final String STORE_TRADING_NAME = "Adega Osasco";
+
+    private final String STORE_VALID_NEW_DOCUMENT = "1432132123891/0007";
+
+    private final Long STORE_VALID_NEW_ID = 62L;
+
+    @BeforeClass
+    void setup() {
+        service.deleteById(STORE_VALID_NEW_ID);
+    }
+
+    @AfterClass
+    void onEnd() {
+        service.deleteById(STORE_VALID_NEW_ID);
+    }
 
     @Test
     public void getStoreById_whenValidStoreId_thenReturnValidStore() {
@@ -35,5 +52,19 @@ public class StoreServiceTest {
         assertThrows(StoreNotFoundException.class, () -> service.getById(171L));
     }
 
+    @Test
+    public void createStore_whenSuccess_thenReturnStoreCreated() {
+        Store store = dataLoaderService.get().get(1); // gets the first Store loaded from json
+        assertThat(store).isNotNull();
+
+        // change unique values
+        store.setId(STORE_VALID_NEW_ID);
+        store.setDocument(STORE_VALID_NEW_DOCUMENT);
+
+        Store created = service.create(store);
+        assertThat(created).isNotNull();
+        assertThat(store.getId()).isEqualTo(STORE_VALID_NEW_ID);
+        assertThat(store.getDocument()).isEqualTo(STORE_VALID_NEW_DOCUMENT);
+    }
 
 }

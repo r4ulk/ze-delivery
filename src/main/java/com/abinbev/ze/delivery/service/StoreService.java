@@ -9,4 +9,5 @@ public interface StoreService {
     Store create(Store store);
     Store getById(Long id);
     List<StoreService> searchNear(Point point);
+    void deleteById(Long id);
 }
