@@ -69,7 +69,6 @@ public class StoreServiceTest {
         store.setId(666);
 
         assertThrows(StoreDuplicatedException.class, () -> service.create(store));
-
     }
 
 }
