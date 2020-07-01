@@ -7,11 +7,11 @@ import com.abinbev.ze.delivery.model.Store;
 import com.abinbev.ze.delivery.repository.store.StoreRepository;
 import com.abinbev.ze.delivery.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.awt.*;
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +19,9 @@ import java.util.Optional;
 public class StoreServiceImpl implements StoreService {
 
     private final StoreRepository repository;
+
+    @Value("${store.notfound}")
+    private String MESSAGE_STORE_NOTFOUND;
 
     @Autowired
     public StoreServiceImpl(StoreRepository repository) {
@@ -38,7 +41,7 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public Store getById(Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new StoreNotFoundException("No Store Found."));
+                .orElseThrow(() -> new StoreNotFoundException(MESSAGE_STORE_NOTFOUND));
     }
 
     @Override
