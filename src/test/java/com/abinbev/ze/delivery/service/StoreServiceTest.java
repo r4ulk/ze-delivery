@@ -3,8 +3,6 @@ package com.abinbev.ze.delivery.service;
 import com.abinbev.ze.delivery.exception.StoreDuplicatedException;
 import com.abinbev.ze.delivery.exception.StoreNotFoundException;
 import com.abinbev.ze.delivery.model.Store;
-import com.abinbev.ze.delivery.utils.GeoJsonTypeEnum;
-import org.junit.After;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
