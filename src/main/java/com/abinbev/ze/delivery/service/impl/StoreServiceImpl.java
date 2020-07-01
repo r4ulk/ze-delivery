@@ -11,6 +11,7 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.awt.*;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,7 +38,7 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public Store getById(Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new StoreNotFoundException());
+                .orElseThrow(() -> new StoreNotFoundException("No Store Found."));
     }
 
     @Override

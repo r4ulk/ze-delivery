@@ -3,12 +3,16 @@ package com.abinbev.ze.delivery.service;
 import com.abinbev.ze.delivery.exception.StoreDuplicatedException;
 import com.abinbev.ze.delivery.exception.StoreNotFoundException;
 import com.abinbev.ze.delivery.model.Store;
-import org.junit.BeforeClass;
+import org.junit.After;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.io.IOException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -27,15 +31,20 @@ public class StoreServiceTest {
 
     private final String STORE_VALID_NEW_DOCUMENT = "1432132123891/0007";
 
-    private final Long STORE_VALID_NEW_ID = 62L;
+    private final Long STORE_VALID_NEW_ID = 6666666L;
 
-    @BeforeClass
-    void setup() {
+    @BeforeEach
+    public void setup() {
+        service.deleteById(STORE_VALID_NEW_ID);
+    }
+
+    @AfterEach
+    public void finalizer() {
         service.deleteById(STORE_VALID_NEW_ID);
     }
 
     @Test
-    public void getStoreById_whenValidStoreId_thenReturnValidStore() {
+    public void getStoreById_whenValidStoreId_thenReturnValidStore() throws IOException {
         Store store = service.getById(1L);
         assertThat(store).isNotNull();
         assertThat(store.getTradingName()).isEqualTo(STORE_TRADING_NAME);
@@ -47,7 +56,7 @@ public class StoreServiceTest {
     }
 
     @Test
-    public void createStore_whenSuccess_thenReturnStoreCreated() {
+    public void createStore_whenSuccess_thenReturnStoreCreated() throws IOException {
         Store store = dataLoaderService.get().get(0); // gets the first Store loaded from json
         assertThat(store).isNotNull();
 
