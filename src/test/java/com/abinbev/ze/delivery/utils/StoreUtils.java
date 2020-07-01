@@ -2,8 +2,11 @@ package com.abinbev.ze.delivery.utils;
 
 public class StoreUtils {
 
-    // Valid Sets
+    // Valid CURRENT Sets
     public static final String STORE_TRADING_NAME = "Adega Osasco";
+    public static final String STORE_VALID_DOCUMENT = "02.453.716/000170";
+
+    // Valid NEW Sets
     public static final String STORE_VALID_NEW_DOCUMENT = "1432132123891/0007";
     public static final Long STORE_VALID_NEW_ID = 9999L;
 

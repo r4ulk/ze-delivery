@@ -43,7 +43,11 @@ public class StoreRepositoryTest {
     public void getAllNearStoresByLocation_whenSuccess_thenReturnStoreList() {
         Distance distance = new Distance(0.1, Metrics.KILOMETERS); // 100 meters
 
-        List<Store> stores = repository.findByLocationNear(GeoJsonTypeEnum.MULTIPOLYGON.getValue(), -43.297337,-23.013538, distance.getValue());
+        List<Store> stores = repository.findByLocationNear(
+                GeoJsonTypeEnum.MULTIPOLYGON.getValue(),
+                -43.297337,
+                -23.013538,
+                distance.getValue());
 
         assertThat(stores).isNotNull();
         assertThat(stores.size()).isEqualTo(1);

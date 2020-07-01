@@ -3,6 +3,7 @@ package com.abinbev.ze.delivery.service;
 import com.abinbev.ze.delivery.exception.StoreDuplicatedException;
 import com.abinbev.ze.delivery.exception.StoreNotFoundException;
 import com.abinbev.ze.delivery.model.Store;
+import com.abinbev.ze.delivery.utils.GeoJsonTypeEnum;
 import org.junit.After;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,9 +11,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.geo.Point;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -78,6 +81,15 @@ public class StoreServiceTest {
         store.setId(666);
 
         assertThrows(StoreDuplicatedException.class, () -> service.create(store));
+    }
+
+    @Test
+    public void getAllNearStoresByLocation_whenSuccess_thenReturnStoreList() {
+        List<Store> stores = service.searchNear(new Point(-43.297337, -23.013538));
+
+        assertThat(stores).isNotNull();
+        assertThat(stores.size()).isEqualTo(1);
+        assertThat(stores.get(0).getTradingName()).isEqualTo(STORE_TRADING_NAME);
     }
 
 }

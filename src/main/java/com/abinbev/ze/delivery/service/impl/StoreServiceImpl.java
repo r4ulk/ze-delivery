@@ -6,12 +6,15 @@ import com.abinbev.ze.delivery.exception.StoreNotFoundException;
 import com.abinbev.ze.delivery.model.Store;
 import com.abinbev.ze.delivery.repository.store.StoreRepository;
 import com.abinbev.ze.delivery.service.StoreService;
+import com.abinbev.ze.delivery.utils.GeoJsonTypeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.data.geo.Distance;
+import org.springframework.data.geo.Metrics;
 import org.springframework.stereotype.Service;
 
-import java.awt.*;
+import org.springframework.data.geo.Point;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,8 +48,13 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public List<StoreService> searchNear(Point point) {
-        return null;
+    public List<Store> searchNear(Point point) {
+        Distance distance = new Distance(0.1, Metrics.KILOMETERS);
+        return repository.findByLocationNear(
+                GeoJsonTypeEnum.MULTIPOLYGON.getValue(),
+                point.getX(),
+                point.getY(),
+                distance.getValue());
     }
 
     @Override
