@@ -1,0 +1,134 @@
+#containerMap {
+    padding: 3px;
+    border: 1px solid #CCC;
+    margin: 0 20px;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #333333;
+}
+.center {
+    margin: 20px auto;
+    width: 555px;
+    height: 80px;
+}
+.zeDeliveryStore{
+    padding: 15px 10px 10px 30px;
+    width: 540px;
+    -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,0.15);
+    -moz-box-shadow: 0 0 10px 0 rgba(0,0,0,0.15);
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.15);
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    background-color: #333333;
+}
+.inputSearch {
+    position: absolute;
+    top: 31px;
+    margin-left: 192px;
+}
+.storesLayer {
+    position: absolute;
+    top: 175px;
+    left: 35px;
+    font-family: "Lato",sans-serif;
+    text-shadow: 0.5px 0.866px 0px rgba(0,0,0,0.1);
+}
+.strLayer {
+    border: 1px solid #D6D9E4;
+    color: #2E3241;
+    background-color: #F2F2F2;
+    margin-bottom: 2px;
+    padding: 10px;
+}
+.strLayer a {
+    cursor: pointer;
+}
+.strLayer b {
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 15px;
+    color: #FDC513;
+}
+.strLayer p {
+    font-size: 11px;
+    line-height: 15px;
+}
+.author {
+    font-family: "Lato",sans-serif;
+    color: #c2c2c2;
+    font-size: 11px;
+    width: 200px;
+    float: right;
+    margin-top: 4px;
+    margin-right: 0;
+}
+
+.searchInputByAddress {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 350px;
+    height: 55px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+.searchInputByAddress:focus {
+    border-color: #4d90fe;
+}
+.pac-container {
+    font-family: Roboto;
+}
+
+#type-selector {
+    color: #fff;
+    background-color: #4d90fe;
+    padding: 5px 11px 0px 11px;
+}
+#type-selector label {
+    font-family: "Lato",sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+}
+#target {
+    width: 345px;
+}
+.autocompleteContainer {
+    position: absolute;
+    z-index: 99999;
+    border-bottom: honeydew;
+    border-left: honeydew;
+    border-right: honeydew;
+    border-top: 1px solid #e6e6e6;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    border-radius: 0 0 2px 2px;
+    font-family: "Lato",sans-serif;
+    font-size: 15px;
+    color: #2E3241;
+}
+.suggestionItem {
+   padding: 4px;
+   text-align: left;
+ }
+
+.suggestionIcon {
+    margin-right: 8px;
+}
+
+.textMuted {
+    color: #818a91 !important
+}
+a.textMuted:focus, a.textMuted:hover {
+    color:#687077 !important
+}
+
