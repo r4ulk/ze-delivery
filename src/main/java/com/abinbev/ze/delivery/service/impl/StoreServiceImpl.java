@@ -26,6 +26,9 @@ public class StoreServiceImpl implements StoreService {
     @Value("${store.notfound}")
     private String MESSAGE_STORE_NOTFOUND;
 
+    @Value("${store.distance.range}")
+    private double STORE_RANGE_KILOMETERS;
+
     @Autowired
     public StoreServiceImpl(StoreRepository repository) {
         this.repository = repository;
@@ -49,7 +52,7 @@ public class StoreServiceImpl implements StoreService {
 
     @Override
     public List<Store> searchNear(Point point) {
-        Distance distance = new Distance(0.1, Metrics.KILOMETERS);
+        Distance distance = new Distance(STORE_RANGE_KILOMETERS, Metrics.KILOMETERS);
         return repository.findByLocationNear(
                 GeoJsonTypeEnum.MULTIPOLYGON.getValue(),
                 point.getX(),
