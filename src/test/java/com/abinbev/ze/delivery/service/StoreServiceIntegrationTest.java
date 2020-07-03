@@ -3,6 +3,7 @@ package com.abinbev.ze.delivery.service;
 import com.abinbev.ze.delivery.exception.StoreDuplicatedException;
 import com.abinbev.ze.delivery.exception.StoreNotFoundException;
 import com.abinbev.ze.delivery.model.Store;
+import com.abinbev.ze.delivery.utils.StoreUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class StoreServiceTest {
+public class StoreServiceIntegrationTest {
 
     @Autowired
     private StoreService service;
@@ -28,32 +29,26 @@ public class StoreServiceTest {
     @Autowired
     private DataLoaderService dataLoaderService;
 
-    private final String STORE_TRADING_NAME = "Adega Osasco";
-
-    private final String STORE_VALID_NEW_DOCUMENT = "1432132123891/0007";
-
-    private final Long STORE_VALID_NEW_ID = 6666666L;
-
     @BeforeEach
     public void setup() {
-        service.deleteById(STORE_VALID_NEW_ID);
+        service.deleteById(StoreUtils.STORE_VALID_NEW_ID);
     }
 
     @AfterEach
     public void finalizer() {
-        service.deleteById(STORE_VALID_NEW_ID);
+        service.deleteById(StoreUtils.STORE_VALID_NEW_ID);
     }
 
     @Test
     public void getStoreById_whenValidStoreId_thenReturnValidStore() throws IOException {
-        Store store = service.getById(1L);
+        Store store = service.getById(StoreUtils.STORE_VALID_ID);
         assertThat(store).isNotNull();
-        assertThat(store.getTradingName()).isEqualTo(STORE_TRADING_NAME);
+        assertThat(store.getTradingName()).isEqualTo(StoreUtils.STORE_TRADING_NAME);
     }
 
     @Test
     public void getStoreById_whenInvalidStoreId_thenReturnStoreNotFoundException() {
-        assertThrows(StoreNotFoundException.class, () -> service.getById(171L));
+        assertThrows(StoreNotFoundException.class, () -> service.getById(StoreUtils.STORE_INVALID_ID));
     }
 
     @Test
@@ -62,13 +57,13 @@ public class StoreServiceTest {
         assertThat(store).isNotNull();
 
         // change unique values
-        store.setId(STORE_VALID_NEW_ID);
-        store.setDocument(STORE_VALID_NEW_DOCUMENT);
+        store.setId(StoreUtils.STORE_VALID_NEW_ID);
+        store.setDocument(StoreUtils.STORE_VALID_NEW_DOCUMENT);
 
         Store created = service.create(store);
         assertThat(created).isNotNull();
-        assertThat(store.getId()).isEqualTo(STORE_VALID_NEW_ID);
-        assertThat(store.getDocument()).isEqualTo(STORE_VALID_NEW_DOCUMENT);
+        assertThat(store.getId()).isEqualTo(StoreUtils.STORE_VALID_NEW_ID);
+        assertThat(store.getDocument()).isEqualTo(StoreUtils.STORE_VALID_NEW_DOCUMENT);
     }
 
     @Test
@@ -76,18 +71,19 @@ public class StoreServiceTest {
         Store store = dataLoaderService.get().get(0); // gets the first Store loaded from json
         assertThat(store).isNotNull();
 
-        store.setId(666);
+        store.setId(StoreUtils.STORE_VALID_NEW_ID);
 
         assertThrows(StoreDuplicatedException.class, () -> service.create(store));
     }
 
     @Test
     public void getAllNearStoresByLocation_whenSuccess_thenReturnStoreList() {
-        List<Store> stores = service.searchNear(new Point(-43.297337, -23.013538));
+        Point point = new Point(StoreUtils.STORE_LONGITUDE, StoreUtils.STORE_LATITUDE);
+        List<Store> stores = service.searchNear(point);
 
         assertThat(stores).isNotNull();
         assertThat(stores.size()).isEqualTo(1);
-        assertThat(stores.get(0).getTradingName()).isEqualTo(STORE_TRADING_NAME);
+        assertThat(stores.get(0).getTradingName()).isEqualTo(StoreUtils.STORE_TRADING_NAME);
     }
 
 }

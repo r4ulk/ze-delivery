@@ -21,13 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class StoreControllerTest {
-
-    private static final String PARAM_LONGITUDE = "lng";
-    private static final String PARAM_LATITUDE  = "lat";
-
-    private static final Double LONGITUDE =-43.297337;
-    private static final Double LATITUDE  =-23.013538;
+public class StoreControllerIntegrationTest {
 
     @Autowired
     private StoreService service;
@@ -52,7 +46,7 @@ public class StoreControllerTest {
 
     @Test
     public void getStoreByIdController_whenValidStoreId_thenReturnValidStore() throws Exception {
-        mockMvc.perform(get(StoreController.BASE_URL + "/1"))
+        mockMvc.perform(get(StoreController.BASE_URL + "/" + StoreUtils.STORE_VALID_ID))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.tradingName").exists())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.tradingName").value(StoreUtils.STORE_TRADING_NAME));
@@ -60,7 +54,7 @@ public class StoreControllerTest {
 
     @Test
     public void getStoreByIdController_whenInvalidStoreId_thenReturnStoreNotFoundException() throws Exception {
-        mockMvc.perform(get(StoreController.BASE_URL + "/10000"))
+        mockMvc.perform(get(StoreController.BASE_URL + "/" + StoreUtils.STORE_INVALID_ID))
                 .andExpect(status().isNotFound());
     }
 
@@ -69,7 +63,7 @@ public class StoreControllerTest {
         mockMvc.perform(
                 post(StoreController.BASE_URL)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(StoreUtils.getValidStoreMock())
+                        .content(StoreUtils.getValidMockStoreToString())
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.tradingName").exists())
@@ -83,7 +77,7 @@ public class StoreControllerTest {
         mockMvc.perform(
                 post(StoreController.BASE_URL)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(StoreUtils.getDuplicatedStoreMock())
+                        .content(StoreUtils.getDuplicatedMockStoreToString())
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isConflict());
     }
@@ -92,8 +86,8 @@ public class StoreControllerTest {
     public void getAllNearStoresByLocation_whenSuccess_thenReturnStoreList() throws Exception {
         mockMvc.perform(
                 get(StoreController.BASE_URL)
-                        .param(PARAM_LONGITUDE, LONGITUDE.toString())
-                        .param(PARAM_LATITUDE, LATITUDE.toString()))
+                        .param(StoreUtils.STORE_PARAM_LONGITUDE, StoreUtils.STORE_LONGITUDE.toString())
+                        .param(StoreUtils.STORE_PARAM_LATITUDE, StoreUtils.STORE_LATITUDE.toString()))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].tradingName").exists())
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].tradingName").value(StoreUtils.STORE_TRADING_NAME))
