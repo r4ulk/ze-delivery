@@ -17,14 +17,11 @@ Plus (+)
 
 Create an API Restful that provide the requirements: 
 
-1 - Create partner
-All fields are required and must follow the rules set above.
+1 - Create partner - All fields are required and must follow the rules set above.
     
-2 - Get partner by id
-Get a specific partner by its id.
+2 - Get partner by id - Get a specific partner by its id.
 
-3 - Search partner
-Given a specific location (coordinates lng and lat), search the nearest partner considering each partner's coverage area.
+3 - Search partner - Given a specific location (coordinates lng and lat), search the nearest partner considering each partner's coverage area.
 
 ### Requirements ###
 
