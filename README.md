@@ -79,6 +79,8 @@ and again to up spring-boot with gradle:
 1 - API Documentation
 http://localhost:8080/swagger-ui.html
 
+![alt text](https://github.com/r4ulk/ze-delivery/blob/master/src/main/resources/static/ze-swagger.png?raw=true)
+
 - #### Exposed API's ###
 
   - 1 - Get Store by Id - (GET - http://localhost:8080/stores/1)
@@ -89,6 +91,14 @@ http://localhost:8080/swagger-ui.html
 
 ##### Home #####
 `http://localhost:8080`
+
+####### You will see: #######
+
+![alt text](https://github.com/r4ulk/ze-delivery/blob/master/src/main/resources/static/ze-home.png?raw=true)
+
+####### Search engine #######
+
+![alt text](https://github.com/r4ulk/ze-delivery/blob/master/src/main/resources/static/ze-auto-complete?raw=true)
 
 ### Credits ###
 
