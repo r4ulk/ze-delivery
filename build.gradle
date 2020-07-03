@@ -9,6 +9,8 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 configurations {
+	integrationImplementation.extendsFrom testImplementation
+	integrationRuntime.extendsFrom testRuntime
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
@@ -29,11 +31,37 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+	testCompile group: 'org.mockito', name: 'mockito-core', version: '3.3.3'
 	testCompile 'junit:junit:4.13'
+	integrationImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	integrationImplementation group: 'org.mockito', name: 'mockito-core', version: '3.3.3'
+	integrationImplementation 'junit:junit:4.13'
 	compile "io.springfox:springfox-swagger2:2.9.2"
 	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
 }
 
 test {
 	useJUnitPlatform()
+}
+
+sourceSets {
+	integration {
+		java.srcDir "$projectDir/src/integration/java"
+		resources.srcDir "$projectDir/src/integration/resources"
+		compileClasspath += main.output + test.output
+		runtimeClasspath += main.output + test.output
+	}
+}
+
+task integrationTest(type: Test) {
+//	testClassesDirs = sourceSets.integration.output.classesDirs
+//	classpath = sourceSets.integration.runtimeClasspath
+	useJUnitPlatform()
+	description = 'Runs the integration tests.'
+	group = 'verification'
+	testClassesDirs = sourceSets.integration.output.classesDirs
+	classpath = sourceSets.integration.runtimeClasspath
+	outputs.upToDateWhen { false }
 }

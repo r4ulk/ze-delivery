@@ -21,6 +21,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document
+@Builder
 public class Store {
 
     @Id
