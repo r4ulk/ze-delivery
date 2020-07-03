@@ -52,7 +52,7 @@ To run integrated tests (require a up local MongoDB server)
 gradle integrationTest
 ```
 
-4 - Start up the containers
+3 - Start up the containers
 ```
 docker-compose up
 ```
