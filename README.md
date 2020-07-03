@@ -1,6 +1,7 @@
 # README #
 
 This a code challenge of Zé Delivery using:
+
 - Spring-Boot (Java 11), 
 - MongoDB
 - Gradle build
@@ -8,23 +9,25 @@ This a code challenge of Zé Delivery using:
 - npm
 - Swagger 2 (API Doc)
 
-Plus +
+Plus (+)
+
 - ReactJS 
 
 ### About the challenge ###
 
 Create an API Restful that provide the requirements: 
 
-1 - Create partner<br />
-All fields are required and must follow the rules set above.
+1 - Create partner
+    All fields are required and must follow the rules set above.
     
-2 - Get partner by id<br />
-Get a specific partner by its id.
+2 - Get partner by id
+    Get a specific partner by its id.
 
-3 - Search partner<br />
-Given a specific location (coordinates lng and lat), search the nearest partner considering each partner's coverage area.
+3 - Search partner
+    Given a specific location (coordinates lng and lat), search the nearest partner considering each partner's coverage area.
 
 ### Requirements ###
+
 To build and run we will need:
 
 1 - npm
