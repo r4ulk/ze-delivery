@@ -28,7 +28,9 @@ Create an API Restful that provide the requirements:
 To build and run we will need:
 
 1 - npm
+
 2 - Gradle
+
 3 - Docker
 
 ### How do I get set up? ###
