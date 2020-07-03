@@ -92,13 +92,13 @@ http://localhost:8080/swagger-ui.html
 ##### Home #####
 `http://localhost:8080`
 
-####### You will see: #######
+###### You will see: ######
 
 ![alt text](https://github.com/r4ulk/ze-delivery/blob/master/src/main/resources/static/ze-home.png?raw=true)
 
-####### Search engine #######
+###### Search engine ######
 
-![alt text](https://github.com/r4ulk/ze-delivery/blob/master/src/main/resources/static/ze-auto-complete?raw=true)
+![alt text](https://github.com/r4ulk/ze-delivery/blob/master/src/main/resources/static/ze-auto-complete.png?raw=true)
 
 ### Credits ###
 
