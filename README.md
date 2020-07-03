@@ -103,4 +103,5 @@ http://localhost:8080/swagger-ui.html
 ### Credits ###
 
 Raul Klumpp <raulklumpp@gmail.com>
+
 https://www.linkedin.com/in/raulk/
