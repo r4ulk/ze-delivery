@@ -1,5 +1,7 @@
 # README #
 
+![alt text](https://github.com/r4ulk/ze-delivery/blob/master/src/main/resources/static/logo-white-text.png?raw=true)
+
 This a code challenge of Zé Delivery using:
 
 - Spring-Boot (Java 11), 
