@@ -37,7 +37,6 @@ To build and run we will need:
 
 1 - Run the followed codes in your terminal:
 ```
-npm i npm to update
 npm install
 ```
 *It will download React dependencies.
@@ -53,12 +52,7 @@ To run integrated tests (require a up local MongoDB server)
 gradle integrationTest
 ```
 
-3 - Building local Docker image
-```
-docker build -t zedelivery .
-```
-
-$ - Start up the containers
+4 - Start up the containers
 ```
 docker-compose up
 ```
@@ -68,6 +62,7 @@ docker-compose up
 
 If you have some problem with npm dependencies, try to run to install manually dependencies:
 ```
+npm i npm to update
 npm install webpack --save
 npm install babel-core babel-loader babel-preset-es2015 babel-preset-react --save
 npm install react react-dom --save
