@@ -71,8 +71,6 @@ npm install react react-dom --save
 npm install webpack-dev-server --dev-install
 ./node_modules/.bin/webpack -d
 ```
-and again to up spring-boot with gradle:
-`./gradlew build && java -jar build/libs/jumbo-0.1.0.jar`
 
 ### Lets try ###
 
