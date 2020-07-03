@@ -90,7 +90,7 @@ http://localhost:8080/swagger-ui.html
 
   - 3 - Create Store - (POST - http://localhost:8080/stores?lng=-43.36556&lat=-22.99669)
 
-Home
+##### Home #####
 `http://localhost:8080`
 
 ### Credits ###
