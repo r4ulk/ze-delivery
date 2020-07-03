@@ -82,14 +82,14 @@ http://localhost:8080/swagger-ui.html
 
 - #### Exposed API's ###
 
-  - 1 - Get Store by Id<br />
-GET - http://localhost:8080/stores/1
+  - 1 - Get Store by Id 
+  GET - http://localhost:8080/stores/1
 
   - 2 - Get Stores list by near location<br />
-GET - http://localhost:8080/stores?lng=-43.36556&lat=-22.99669
+  GET - http://localhost:8080/stores?lng=-43.36556&lat=-22.99669
 
   - 3 - Create Store<br />
-POST - http://localhost:8080/stores?lng=-43.36556&lat=-22.99669
+  POST - http://localhost:8080/stores?lng=-43.36556&lat=-22.99669
 
 Home
 `http://localhost:8080`
